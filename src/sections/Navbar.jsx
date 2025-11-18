@@ -32,16 +32,17 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="fixed inset-x-0 z-20 w-full backdrop-blur-lg bg-primary/40">
-      <div className="mx-auto c-space max-w-7xl">
+    <div className="fixed top-0 left-0 w-full z-[9999] backdrop-blur-lg bg-primary/40">
+      <div className="mx-auto max-w-7xl c-space">
         <div className="flex items-center justify-between py-2 sm:py-0">
           <a
-            href="/"
-            className="text-xl font-bold text-neutral-400 hover:text-white"
+            href="#home"
+            className="text-xl font-bold text-neutral-400 hover:text-white transition"
           >
             Abhiram
           </a>
 
+          {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="p-2 rounded-md hover:bg-white/10 sm:hidden"
@@ -49,26 +50,26 @@ const Navbar = () => {
             <img
               src={isOpen ? "/assets/close.svg" : "/assets/menu.svg"}
               alt="toggle"
-              className="w-6 h-6 sm:w-8 sm:h-8"
+              className="w-6 h-6"
             />
           </button>
 
+          {/* Desktop Navigation */}
           <nav className="hidden sm:flex">
             <Navigation />
           </nav>
         </div>
       </div>
+
+      {/* Mobile Navigation Menu */}
       {isOpen && (
         <motion.div
-          className="block overflow-hidden text-center sm:hidden"
-          initial={{ opacity: 0, x: -10 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.1 }}
-          style={{ maxHeight: "100vh" }}
+          className="sm:hidden text-center pb-4"
+          initial={{ opacity: 0, y: -5 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.15 }}
         >
-          <nav className="pb-5">
-            <Navigation />
-          </nav>
+          <Navigation />
         </motion.div>
       )}
     </div>
